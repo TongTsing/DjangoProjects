@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .book-info {
+            margin-top: 20px;
+        }
+        .book-info p {
+            margin: 10px 0;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .publishers {
+            list-style-type: none;
+            padding: 0;
+        }
+        .publishers li {
+            background-color: #e2e2e2;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ book.title }}</h1>
+        <div class="book-info">
+            <p><span class="label">Author:</span> {{ book.author.name }}</p>
+            <p><span class="label">Publishers:</span></p>
+            <ul class="publishers">
+                {% for publisher in book.publisher.all %}
+                    <li>{{ publisher.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

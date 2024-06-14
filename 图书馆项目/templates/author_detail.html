@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ author.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .author-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .book-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .book-item {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        .book-title:hover {
+            text-decoration: underline;
+        }
+
+        .no-books {
+            text-align: center;
+            color: #777;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Author: {{ author.name }}</h1>
+        <div class="author-info">
+            <p>Books by {{ author.name }}:</p>
+            {% if books %}
+                <ul class="book-list">
+                    {% for book in books %}
+                        <li class="book-item">
+                            <a class="book-title" href="{% url 'library:book_detail' book.title %}">{{ book.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-books">No books found for this author.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

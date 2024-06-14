@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .book-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .book-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .book-item:last-child {
+            border-bottom: none;
+        }
+
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        .book-title:hover {
+            text-decoration: underline;
+        }
+
+        .book-author {
+            display: block;
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .author-link {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        .author-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>All Books</h1>
+        <ul class="book-list">
+            {% for book in books %}
+                <li class="book-item">
+                    <a class="book-title" href="{% url 'library:book_detail' book.title %}">{{ book.title }}</a>
+                    <span class="book-author">作者：
+                        <a class="author-link" href="{% url 'library:author_detail' book.author.name %}">{{ book.author.name }}</a>
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
