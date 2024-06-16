@@ -14,9 +14,17 @@
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
+            box-sizing: border-box;
         }
         .container {
             text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px;
         }
         .button {
             display: inline-block;
@@ -27,9 +35,52 @@
             background-color: #007BFF;
             text-decoration: none;
             border-radius: 5px;
+            margin-bottom: 20px;
         }
         .button:hover {
             background-color: #0056b3;
+        }
+        .search-box {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .search-box input[type="text"],
+        .search-box select {
+            padding: 15px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .search-box input[type="text"] {
+            flex: 2 1 300px;
+        }
+        .search-box select {
+            flex: 1 1 150px;
+        }
+        .search-box button {
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 0 1 150px;
+        }
+        .search-box button:hover {
+            background-color: #218838;
+        }
+        .search-box p {
+            font-size: 16px;
+            color: #777;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
@@ -37,6 +88,19 @@
     <div class="container">
         <h1>Welcome to the Book Library</h1>
         <a href="{% url 'library:allbooks' %}" class="button">View All Books</a>
+        <div class="search-box">
+            <form method="post" action="{% url 'library:allbooks' %}">
+                {% csrf_token %}
+                <input type="text" name="query" placeholder="Enter your search term" required>
+                <select name="search_type">
+                    <option value="title">Book Title</option>
+                    <option value="publisher">Publisher</option>
+                    <option value="author">Author</option>
+                </select>
+                <button type="submit">Search</button>
+            </form>
+            <p>Hint: Select the search type and enter the corresponding keyword to find books.</p>
+        </div>
     </div>
 </body>
 </html>
